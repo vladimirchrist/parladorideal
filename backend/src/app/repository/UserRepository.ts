@@ -1,9 +1,9 @@
 import { injectable } from "tsyringe";
+import { getRepository } from "typeorm";
 
 import IUserRepository from "./IUserRepository";
 import IUserDto from "../DTO/IUserDto";
 import User from "../models/User";
-import { getRepository, Repository } from "typeorm";
 
 
 @injectable()
