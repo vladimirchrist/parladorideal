@@ -9,7 +9,8 @@ class AuthController {
         const { email, password } = request.body;
 
         const signinService = container.resolve(SigninService);
-        const user = await signinService.signin({ email, password });
+        const user = await signinService.signin({ email, password })
+            .catch(err => err)
 
         return reponse.json(user);
     }
