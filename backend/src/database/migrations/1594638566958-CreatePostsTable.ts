@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table, PrimaryColumn, TableForeignKey, Column, TableColumn, QueryBuilder} from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey, Column, TableColumn, QueryBuilder } from "typeorm";
 
 export class CreatePostsTable1594638566958 implements MigrationInterface {
 
@@ -15,13 +15,19 @@ export class CreatePostsTable1594638566958 implements MigrationInterface {
                 },
                 {
                     name: "message",
-                    type:"varchar",
+                    type: "varchar",
                     length: "280",
                 },
                 {
-                    name: "createdAt",
-                    type: "timestamp"
-                }
+                    name: 'createdAt',
+                    type: 'timestamp with time zone',
+                    default: 'now()',
+                },
+                {
+                    name: 'updatedAt',
+                    type: 'timestamp with time zone',
+                    default: 'now()',
+                },
             ]
         }), true);
 
