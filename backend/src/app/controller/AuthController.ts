@@ -3,16 +3,21 @@ import { container } from "tsyringe";
 import SigninService from "../service/SigninService";
 
 class AuthController {
-    
-    public async authenticate(request: Request, reponse: Response): Promise<Response> {
-        
+
+    public async authenticate(request: Request, response: Response): Promise<Response> {
+
         const { email, password } = request.body;
 
         const signinService = container.resolve(SigninService);
-        const user = await signinService.signin({ email, password })
-            .catch(err => err)
+        const res = await signinService.signin({ email, password })
+            .catch(err => err);
 
-        return reponse.json(user);
+        if (res instanceof Error) {
+            console.log(res.message)
+            return response.status(400).json({error: res.message});
+        }
+
+        return response.json(res);
     }
 }
 

@@ -22,6 +22,12 @@ export default class PostService implements IPostService {
         const post = await this._postRepository.findById(id);
         return post;
     }
+
+    public async findAll(): Promise<Post[]> {
+        const posts = await this._postRepository.findAll();
+        return posts;
+    }
+
     
     public async findAllByUserId(userId: string): Promise<Post[]> {
         const posts = await this._postRepository.findAllByUserId(userId);

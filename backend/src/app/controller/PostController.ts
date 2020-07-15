@@ -28,18 +28,9 @@ export class PostController {
         return response.json(post)
     }
 
-    public async getUserPosts(request: Request, response: Response): Promise<Response> {
-        const userId = request.params.id;
-        const _postService = container.resolve(PostService);
-
-        const post = await _postService.findAllByUserId(userId)
-            .catch(err => err);
-
-        return response.json(post)
-    }
-
-    public async delete(request: Request, response: Response): Promise<Response> {
+    public async delete(request: Request, response: Response): Promise<Response> {  
         const id = request.params.id;
+        console.log(id)
         const _postService = container.resolve(PostService);
 
         const post = await _postService.delete(id)

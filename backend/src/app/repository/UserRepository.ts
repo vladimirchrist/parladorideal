@@ -26,5 +26,4 @@ export default class UserRepository implements IUserRepository {
         const user = await this._repository.findOne({ where: { email } });
         return user;
     }
-      
 }

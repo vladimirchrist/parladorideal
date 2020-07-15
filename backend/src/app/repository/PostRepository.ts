@@ -3,7 +3,6 @@ import IPostDto from "../DTO/IPostDto";
 import { injectable } from "tsyringe";
 import Post from "../models/Post";
 import { getRepository } from "typeorm";
-import AppError from "../../AppError";
 
 @injectable()
 export default class PostRepository implements IPostRepository {
@@ -19,9 +18,21 @@ export default class PostRepository implements IPostRepository {
     public async findById(id: string): Promise<Post> {
         const post = await this._repository.findOne(id);
 
-        if(!post) { throw new AppError("Post nao encontrado!") }
+        if(!post) { throw new Error("Post nao encontrado!") }
 
         return post;
+    }
+
+    public async findAll(): Promise<Post[]> {
+        const posts = await this._repository.find({
+            order: {
+                createdAt: "DESC"
+            }})
+        if(!posts) { 
+            throw new Error("Nao foram encontrados posts para o usuário!")
+        }
+
+        return posts;
     }
     
     public async findAllByUserId(userId: string): Promise<Post[]> {
@@ -30,7 +41,7 @@ export default class PostRepository implements IPostRepository {
         });
 
         if(!posts) { 
-            throw new AppError("Nao foram encontrados posts para o usuário!")
+            throw new Error("Nao foram encontrados posts para o usuário!")
         }
 
         return posts;

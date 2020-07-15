@@ -3,7 +3,6 @@ import { injectable, inject } from "tsyringe";
 import IUserProfileService from "./IUserProfileService";
 import IUserResponseDto from "../DTO/IUserResponseDto";
 import IUserRepository from "../repository/IUserRepository";
-import AppError from "../../AppError";
 
 @injectable()
 export default class UserProfileService implements IUserProfileService {
@@ -16,7 +15,7 @@ export default class UserProfileService implements IUserProfileService {
     public async getById(userId: string): Promise<IUserResponseDto> {
         const user = await this._userRepository.findById(userId);
 
-        if(!user) { throw new AppError('Usuário nao encontrado'); }
+        if(!user) { throw new Error('Usuário nao encontrado'); }
         
         const { id, name, email } = user;
         return { id, name, email };
