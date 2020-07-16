@@ -42,7 +42,7 @@ $ docker run --name parlador-postgres -e POSTGRES_USER=postgres \
               -p 5432:5432 -d postgres
 
 # Certifique-se de que a instancia do banco de dados está executando
-$ docker ps -a
+$ docker ps
 
 # Execute as migrations para criar as tabelas
 $ yarn typeorm migration:run
