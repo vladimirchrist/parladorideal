@@ -56,7 +56,7 @@ export const Icon = styled(TouchableOpacity)`
 
 export const PostMessage = styled.Text`
   margin-vertical: 10px;
-  padding-horizontal: 10px;
+  color: ${({theme}) => theme.colors.lightGray}
 `;
 
 export const Divider = styled.View`
@@ -73,5 +73,3 @@ export const PostFooter = styled.View`
   justify-content: center;
   margin-bottom: 20px;
 `;
-
-export const PostFooterItem = styled.View``;

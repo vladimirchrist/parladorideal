@@ -34,7 +34,7 @@ $ git clone https://github.com/vladimirchrist/parladorideal.git && cd parladorid
 
 ```bash
 # Instale as dependecias
-$ npm install
+$ yarn
 
 # Crie uma instancia do postgres utilizando o docker
 $ docker run --name parlador-postgres -e POSTGRES_USER=postgres \
@@ -44,11 +44,14 @@ $ docker run --name parlador-postgres -e POSTGRES_USER=postgres \
 # Certifique-se de que a instancia do banco de dados está executando
 $ docker ps -a
 
-# execute as migrations
-$ npm rum typeorm migration:run
+# Execute as migrations para criar as tabelas
+$ yarn typeorm migration:run
+
+# Execute as migrations para popular o banco
+$ yarn typeorm migration:run -c seed
 
 # Execute a API, o serviço inicializará na porta 3333
-$ npm run dev
+$ yarn dev
 
 ```
 # Mobile
@@ -72,11 +75,15 @@ Navegue até a pasta mobile.
 
 **Siga os passos abaixo**
 
+
+### Instruções para rodar o projeto
+Instale o aplicativo Expo em seu dispositivo móvel - > [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent)  | [App Store](https://itunes.apple.com/app/apple-store/id982107779?pt=17102800&amp;ct=www&amp;mt=8)
+
 ```bash
 # Instale as dependecias
 $ npm install
 
-# Execute a API, o serviço inicializará na porta 3333
+# Execute a aplicaçao
 $ npm start
 
 ```

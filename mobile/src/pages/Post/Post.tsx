@@ -42,8 +42,7 @@ const Post = () => {
       }
   }
 
-  const post = async () => {
-    
+  const post = async () => {   
     api.post("post", { message: text, userId: user.id })
       .then(() => navigation.navigate("Home"));
   };

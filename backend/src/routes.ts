@@ -1,9 +1,8 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import UsersController from './app/controller/UsersController';
 import AuthController from './app/controller/AuthController';
 import PostController from './app/controller/PostController';
 import PostsController  from './app/controller/PostsController';
-
 
 const routes = Router();
 
@@ -19,8 +18,5 @@ routes.patch('/post', PostController.update)
 
 routes.get('/posts', PostsController.get)
 routes.get('/posts/byUser/:id', PostsController.getUserPosts)
-
-
-
 
 export default routes;

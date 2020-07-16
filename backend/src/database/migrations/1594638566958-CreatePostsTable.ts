@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey, Column, TableColumn, QueryBuilder } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey, TableColumn} from "typeorm";
 
 export class CreatePostsTable1594638566958 implements MigrationInterface {
 

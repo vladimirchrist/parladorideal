@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import moment from "moment";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity, FlatList, Text } from "react-native";
 import api from "../../services/api";
@@ -16,10 +17,9 @@ import {
   HomeHeader,
   HeaderTitle,
 } from "./style";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Post, User } from "../../models";
 import { PostNavigationProp } from "../Post/Post";
-import AsyncStorage from "@react-native-community/async-storage";
 import { useAuth } from "../../hooks/auth";
 
 const Home = () => {
@@ -73,13 +73,16 @@ const Home = () => {
   }
 
   useEffect(() => {
-    loadPosts();
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadPosts()
+    });
+    return unsubscribe;
   }, []);
 
   return (
     <HomeContainer>
       <HomeHeader>
-        <HeaderTitle>Bem vindo {}</HeaderTitle>
+        <HeaderTitle>Bem vindo</HeaderTitle>
       </HomeHeader>
       <FlatList
         data={posts}
@@ -91,7 +94,7 @@ const Home = () => {
           <PostContainer>
             <PostHeader>
               <PostUsername>{post.user?.name}</PostUsername>
-              <PostDate>{post.createdAt}</PostDate>
+              <PostDate>{moment(post.createdAt).format("DD/MM/YYYY")}</PostDate>
               {post.userId === user.id ? (
                 <Actions>
                   <Icon onPress={() => editPost(post)}>
@@ -112,11 +115,8 @@ const Home = () => {
           </PostContainer>
         )}
       />
-
       <PostFooter>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Post", undefined)}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("Post")}>
           <Feather name="plus" size={50} color="#FFF" />
         </TouchableOpacity>
       </PostFooter>

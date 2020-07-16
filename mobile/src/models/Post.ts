@@ -5,6 +5,6 @@ export default interface Post {
     userId: string;
     message: string;
     user?: User;
-    createdAt?: number;
-    updatedAt?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

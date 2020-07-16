@@ -9,7 +9,6 @@ const Routes: React.FC = () => {
   const { user, loading } = useAuth();
 
   useEffect(() => {
-    console.log(loading)
     if (!loading) {
       SplashScreen.hideAsync();
     }
