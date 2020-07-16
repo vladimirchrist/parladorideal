@@ -35,7 +35,8 @@ const AuthProvider: React.FC = ({ children }) => {
       const user = await AsyncStorage.getItem("@Parlador:user");
 
       if (user) {
-        setData({ user: JSON.parse(user) });
+        const u: User = JSON.parse(user)
+        verifyUser(u);
       }
 
       setLoading(false);
@@ -44,9 +45,16 @@ const AuthProvider: React.FC = ({ children }) => {
     loadStorageData();
   }, []);
 
+  const verifyUser = async(user: User) => {
+    const response = await api.get<User>(`/users/${user.id}`);
+    if(response.data.id){
+      setData({ user: response.data });
+    }
+  }
+
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post("/auth", { email, password });
-    const user = await response.data;
+    const response = await api.post<User>("/auth", { email, password });
+    const user = response.data;
     await AsyncStorage.setItem("@Parlador:user", JSON.stringify(user));
     setData({ user });
   }, []);

@@ -13,7 +13,6 @@ class AuthController {
             .catch(err => err);
 
         if (res instanceof Error) {
-            console.log(res.message)
             return response.status(400).json({error: res.message});
         }
 

@@ -30,7 +30,6 @@ export class PostController {
 
     public async delete(request: Request, response: Response): Promise<Response> {  
         const id = request.params.id;
-        console.log(id)
         const _postService = container.resolve(PostService);
 
         const post = await _postService.delete(id)

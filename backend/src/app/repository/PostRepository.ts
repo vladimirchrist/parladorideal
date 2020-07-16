@@ -49,8 +49,6 @@ export default class PostRepository implements IPostRepository {
 
     public async update(post: Post): Promise<Post> {
         const postUpdated = this._repository.update(post.id, post);
-
-        console.log(postUpdated)
         return post;
     }
 

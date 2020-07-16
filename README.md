@@ -51,7 +51,7 @@ $ yarn typeorm migration:run
 $ yarn typeorm migration:run -c seed
 
 # Execute a API, o serviço inicializará na porta 3333
-$ yarn dev
+$ yarn start
 
 ```
 # Mobile
@@ -81,10 +81,10 @@ Instale o aplicativo Expo em seu dispositivo móvel - > [Google Play](https://pl
 
 ```bash
 # Instale as dependecias
-$ npm install
+$ yarn
 
 # Execute a aplicaçao
-$ npm start
+$ expo start
 
 ```
 

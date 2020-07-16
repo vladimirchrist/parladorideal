@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity, FlatList, Text } from "react-native";
